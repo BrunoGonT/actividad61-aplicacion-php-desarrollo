@@ -1,5 +1,5 @@
 <?php
-//Incluye fichero con parámetros de conexión a la base de datos
+// Incluye el fichero con los parámetros de conexión a la base de datos
 include_once("config.php");
 ?>
 
@@ -8,91 +8,94 @@ include_once("config.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Electroshop S.L.</title>
+	<title>Ratchet & Clank - Modificar Personaje</title>
 </head>
 <body>
 <div>
 	<header>
-		<h1>ELECTROSHOP S.L.</h1>
+		<h1>Ratchet & Clank - Base de Datos de Personajes</h1>
 	</header>
 	
 	<main>				
 	<ul>
-		<li><a href="index.php" >Inicio</a></li>
-		<li><a href="add.html" >Alta</a></li>
+		<li><a href="index.php">Inicio</a></li>
+		<li><a href="add.html">Agregar Personaje</a></li>
 	</ul>
-	<h2>Modificación empleado/a</h2>
-
+	<h2>Modificación de Personaje</h2>
 
 <?php
+// Obtiene el id del personaje a modificar desde la URL usando el método GET
+$idpersonaje = $_GET['idpersonaje'];
 
+// Protege el id contra inyecciones SQL
+$idpersonaje = $mysqli->real_escape_string($idpersonaje);
 
-/*Obtiene el id del registro del empleado a modificar, idempleado, a partir de su URL. Este tipo de datos se accede utilizando el método: GET*/
+// Selecciona el registro del personaje
+$resultado = $mysqli->query("SELECT especie, nombre, edad, rol, nivel_amenaza FROM personajes_rc WHERE id = $idpersonaje");
 
-//Recoge el id del empleado a modificar a través de la clave idempleado del array asociativo $_GET y lo almacena en la variable idempleado
-$idempleado = $_GET['idempleado'];
-
-//Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
-$idempleado = $mysqli->real_escape_string($idempleado);
-
-
-//Se selecciona el registro a modificar: select
-$resultado = $mysqli->query("SELECT apellido, nombre, edad, puesto FROM empleados WHERE id = $idempleado");
-
-//Se extrae el registro y lo guarda en el array $fila
-//Nota: También se puede utilizar el método fetch_assoc de la siguiente manera: $fila = $resultado->fetch_assoc();
+// Extrae los datos y los almacena en el array $fila
 $fila = $resultado->fetch_array();
-$surname = $fila['apellido'];
-$name = $fila['nombre'];
-$age = $fila['edad'];
-$job = $fila['puesto'];
+$especie = $fila['especie'];
+$nombre = $fila['nombre'];
+$edad = $fila['edad'];
+$rol = $fila['rol'];
+$nivel_amenaza = $fila['nivel_amenaza'];
 
-//Se cierra la conexión de base de datos
+// Cierra la conexión a la base de datos
 $mysqli->close();
 ?>
 
-<!--FORMULARIO DE EDICIÓN. Al hacer click en el botón Guardar, llama a la página (form action="edit_action.php"): edit_action.php
--->
-
+<!-- FORMULARIO DE EDICIÓN -->
 	<form action="edit_action.php" method="post">
 		<div>
-			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" value="<?php echo $name;?>" required>
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" id="nombre" value="<?php echo $nombre;?>" required>
 		</div>
 
 		<div>
-			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" value="<?php echo $surname;?>" required>
+			<label for="especie">Especie</label>
+			<input type="text" name="especie" id="especie" value="<?php echo $especie;?>" required>
 		</div>
 
 		<div>
-			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" value="<?php echo $age;?>" required>
+			<label for="edad">Edad</label>
+			<input type="number" name="edad" id="edad" value="<?php echo $edad;?>" required>
 		</div>
 
 		<div>
-			<label for="job">Puesto</label>
-			<select name="job" id="job" placeholder="puesto">
-				<option value="<?php echo $job;?>" selected><?php echo $job;?></option>
-				<option value="Administrativo">Administrativo</option>
-				<option value="Contable">Contable</option>
-				<option value="Dependiente">Dependiente</option>
-				<option value="Gerente">Gerente</option>
-				<option value="Repartidor">Repartidor</option>
+			<label for="rol">Rol</label>
+			<select name="rol" id="rol">
+				<option value="<?php echo $rol;?>" selected><?php echo $rol;?></option>
+				<option value="Héroe y mecánico">Héroe y mecánico</option>
+				<option value="Compañero y asistente">Compañero y asistente</option>
+				<option value="Dictador corporativo">Dictador corporativo</option>
+				<option value="Conquistador galáctico">Conquistador galáctico</option>
+				<option value="Falso héroe">Falso héroe</option>
+				<option value="Científico malvado">Científico malvado</option>
+				<option value="Mercenario de combate">Mercenario de combate</option>
 			</select>	
 		</div>
 
-		<div >
-			<input type="hidden" name="idempleado" value=<?php echo $idempleado;?>>
+		<div>
+			<label for="nivel_amenaza">Nivel de Amenaza</label>
+			<select name="nivel_amenaza" id="nivel_amenaza">
+				<option value="<?php echo $nivel_amenaza;?>" selected><?php echo $nivel_amenaza;?></option>
+				<option value="Bajo">Bajo</option>
+				<option value="Medio">Medio</option>
+				<option value="Alto">Alto</option>
+			</select>	
+		</div>
+
+		<div>
+			<input type="hidden" name="idpersonaje" value="<?php echo $idpersonaje;?>">
 			<input type="submit" name="modifica" value="Guardar">
 			<input type="button" value="Cancelar" onclick="location.href='index.php'">
 		</div>
 	</form>
 	</main>	
 	<footer>
-		Created by the IES Miguel Herrero team &copy; 2024
+		Created by the IES Miguel Herrero team &copy; 2025
   	</footer>
 </div>
 </body>
 </html>
-

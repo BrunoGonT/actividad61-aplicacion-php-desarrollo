@@ -1,62 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta empleado/a</title>
+    <title>Registro de Personajes</title>
 </head>
 <body>
 <div>
 	<header>
-		<h1>ELECTROSHOP S.L.</h1>
+		<h1>Ratchet & Clank - Registro de Personajes</h1>
 	</header>
 	<main>				
 	<ul>
 		<li><a href="index.php">Inicio</a></li>
-		<li><a href="add.html">Alta</a></li>
+		<li><a href="add.html">Nuevo Personaje</a></li>
 	</ul>
-	<h2>Alta empleado/a</h2>
-<!--FORMULARIO DE ALTA. Al hacer click en el botón Agregar, llama a la página: add.php (form action="add.php")
-La página: add.php se encargará de proceder a la inserción del registro en la tabla de empleados
--->
+	<h2>Registrar Nuevo Personaje</h2>
 
 	<form action="add_action.php" method="post">
 		<div>
 			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" placeholder="nombre" required>
+			<input type="text" name="name" id="name" placeholder="Nombre del personaje" required>
 		</div>
 
 		<div>
-			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" placeholder="apellido" required>
+			<label for="species">Especie</label>
+			<input type="text" name="species" id="species" placeholder="Especie" required>
 		</div>
 
 		<div>
 			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" placeholder="edad" required>
+			<input type="number" name="age" id="age" placeholder="Edad" required>
 		</div>
 
 		<div>
-			<label for="job">Puesto</label>
-			<select name="job" id="job" placeholder="puesto" required>
-				<option value="" disabled selected>Seleccione un puesto</option>
-				<option value="Administrativo">Administrativo</option>
-				<option value="Contable">Contable</option>
-				<option value="Dependiente">Dependiente</option>
-				<option value="Gerente">Gerente</option>
-				<option value="Repartidor">Repartidor</option>
+			<label for="role">Rol</label>
+			<select name="role" id="role" required>
+				<option value="" disabled selected>Seleccione un rol</option>
+				<option value="Héroe">Héroe</option>
+				<option value="Villano">Villano</option>
+				<option value="Aliado">Aliado</option>
+				<option value="Mercenario">Mercenario</option>
+				<option value="Neutral">Neutral</option>
 			</select>	
 		</div>
 
 		<div>
-			<input type="submit" name="inserta" value="Agregar">
+			<label for="threat_level">Nivel de Amenaza</label>
+			<select name="threat_level" id="threat_level" required>
+				<option value="" disabled selected>Seleccione un nivel</option>
+				<option value="Bajo">Bajo</option>
+				<option value="Medio">Medio</option>
+				<option value="Alto">Alto</option>
+				<option value="Crítico">Crítico</option>
+			</select>
+		</div>
+
+		<div>
+			<input type="submit" name="inserta" value="Registrar">
 			<input type="button" value="Cancelar" onclick="location.href='index.php'">
 		</div>
 	</form>
 	
 	</main>	
 	<footer>
-	Created by the IES Miguel Herrero team &copy; 2025
+		Creado por la Federación Galáctica &copy; 2025
   	</footer>
 </div>
 </body>
