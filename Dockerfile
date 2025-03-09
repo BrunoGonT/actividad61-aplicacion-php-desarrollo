@@ -1,19 +1,10 @@
-# Les comento qué significan cada una de las instrucciones.
-# FROM: Indica cuál es la imagen que vamos a utilizar como punto de partida para generar la nueva imagen
-FROM ubuntu:24.04
-# FROM ubuntu:latest
-
-# ENV: Permite definir una variable de entorno y asignarle un valor por defecto. Se puede utilizar el signo = o un espacio en blanco
-# Se pueden sobreescribir con la opción "--env" al crearse el contenedor: docker run --env...
-# También se puede sobreescribir conla clave "environment" del docker compose
-
 # Con la opción "noninteractive" evita tener que introducir valores de configuración de forma manual durante la instalación de algunos paquetes
 ENV DEBIAN_FRONTEND=noninteractive 
 ENV TZ=Europe/Madrid
 
 # En este caso le asignamos unos valores por defecto a la aplicación CRUD PHP: "mariadb", "electroshop", "usuario", "usuario@1"
 ENV MARIADB_HOST=mariadb
-ENV MARIADB_DATABASE=electroshop
+ENV MARIADB_DATABASE=actividad61BGT
 ENV MARIADB_USER=usuario
 ENV MARIADB_PASSWORD=usuario@1
 

@@ -1,5 +1,7 @@
+CREATE DATABASE IF NOT EXISTS actividad61BGT;
+USE actividad61BGT;
 CREATE TABLE personajes_rc (
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  personajes_rc_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   especie VARCHAR(100) NOT NULL,
   nombre VARCHAR(100) NOT NULL,
   edad INT UNSIGNED NOT NULL,
@@ -28,5 +30,13 @@ VALUES ('Robot', 'Dr. Nefarious', 63, 'Científico malvado', 'Alto');
 INSERT INTO personajes_rc (especie, nombre, edad, rol, nivel_amenaza) 
 VALUES ('Robot', 'Mr. Zurkon', 19, 'Mercenario de combate', 'Medio');
 
+INSERT INTO personajes_rc (especie, nombre, edad, rol, nivel_amenaza) 
+VALUES ('Lombax', 'Rivet', 27, 'Héroe y luchadora', 'Bajo');
+
+INSERT INTO personajes_rc (especie, nombre, edad, rol, nivel_amenaza) 
+VALUES ('Blarg', 'Nevil', 38, 'Líder militar', 'Medio');
+
+INSERT INTO personajes_rc (especie, nombre, edad, rol, nivel_amenaza) 
+VALUES ('Cragmite', 'General Azimuth', 50, 'Comandante rebelde', 'Alto');
 
 
